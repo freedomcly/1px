@@ -11,6 +11,6 @@
 基准机型：iphone6
 只要按照1rem = 100px换算就可以
 
-# 其他问题
+# 相关文档
 
 [如何解决移动端1px问题](https://github.com/freedomcly/1px/issues/1)

@@ -1,87 +1,84 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8">
     <title></title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
     <style type="text/css">
-        .line {
-            margin: 10px 0;
-        }
-        .line1 {
-            width: 100%;
-            height: 100px;
-            border-bottom: 1px solid #999;
-        }
+      .line {
+        margin: 10px 0;
+      }
+      .line1 {
+        width: 100%;
+        height: 100px;
+        border-bottom: 1px solid #999;
+      }
     </style>
     
     <!-- 必须同步内嵌引入 -->
     <!-- <script type="text/javascript" src="../src/flexible.js"></script> -->
     <script type="text/javascript">
-        (function(window, document){
+      (function (window, document) {
+        'use strict'
 
-            'use strict';
+        var flexible = {};
 
-            var flexible = {};
+        (function () {
+          var viewportEl = document.querySelector('meta[name="viewport"]')
+          var dpr = window.devicePixelRatio || 1
 
-            (function() {
-                var viewportEl = document.querySelector('meta[name="viewport"]'),
-                    dpr = window.devicePixelRatio || 1,
-                    designWidth = 0;
+          dpr = dpr >= 3 ? 3 : (dpr >= 2 ? 2 : 1)
 
-                dpr = dpr >= 3 ? 3 : (dpr >=2 ? 2 : 1);
+          document.documentElement.setAttribute('data-dpr', dpr)
+          flexible.dpr = dpr
 
-                document.documentElement.setAttribute('data-dpr', dpr);
-                flexible.dpr = dpr;
+          var scale = 1 / dpr
+          var content = 'width=device-width, initial-scale=' + scale + ', minimum-scale=' + scale + ', maximum-scale=' + scale + ', user-scalable=no'
 
-                var scale = 1 / dpr,
-                    content = 'width=device-width, initial-scale=' + scale + ', minimum-scale=' + scale + ', maximum-scale=' + scale + ', user-scalable=no';
+          if (viewportEl) {
+            viewportEl.setAttribute('content', content)
+          } else {
+            viewportEl = document.createElement('meta')
+            viewportEl.setAttribute('name', 'viewport')
+            viewportEl.setAttribute('content', content)
+            document.head.appendChild(viewportEl)
+          }
+        })()
 
-                if (viewportEl) {
-                    viewportEl.setAttribute('content', content);
-                } else {
-                    viewportEl = document.createElement('meta');
-                    viewportEl.setAttribute('name', 'viewport');
-                    viewportEl.setAttribute('content', content);
-                    document.head.appendChild(viewportEl);
-                }
-            })();
+        flexible.mresize = function () {
+          // 核心方法
+          var innerWidth = document.documentElement.getBoundingClientRect().width || window.innerWidth
 
-            flexible.mresize = function(){
-                //核心方法
-                var innerWidth = document.documentElement.getBoundingClientRect().width || window.innerWidth;
+          if (!innerWidth) { return false }
 
-                if(!innerWidth){return false;}
+          // 对于iphone6，1rem = 100px
+          document.documentElement.style.fontSize = (innerWidth / 750 * 100) + 'px'
+        }
 
-                // 对于iphone6，1rem = 100px
-                document.documentElement.style.fontSize = (innerWidth / 750 * 100) + 'px';
-            };
+        // 直接调用
+        flexible.mresize()
 
-            // 直接调用
-            flexible.mresize();
+        // resize时调用
+        window.addEventListener('resize', function () {
+          clearTimeout(flexible.tid)
+          flexible.tid = setTimeout(flexible.mresize, 33)
+        }, false)
 
-            // resize时调用
-            window.addEventListener('resize', function(){
-                clearTimeout(flexible.tid);
-                flexible.tid = setTimeout(flexible.mresize, 33);
-            }, false);
+        // load时调用，防止兼容性问题
+        window.addEventListener('load', flexible.mresize, false)
 
-            // load时调用，防止兼容性问题
-            window.addEventListener('load', flexible.mresize, false); 
+        // 异步调用，防止兼容性问题
+        setTimeout(function () {
+          flexible.mresize()
+        }, 333)
 
-            // 异步调用，防止兼容性问题
-            setTimeout(function(){
-                flexible.mresize(); 
-            }, 333);
-
-            window.flexible = flexible; 
-
-        })(window, document);
+        window.flexible = flexible
+      })(window, document)
 
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="line line1">
     </div>
-</body>
+  </body>
 </html>

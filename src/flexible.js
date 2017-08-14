@@ -1,4 +1,4 @@
-(function( window , document ){
+(function(window, document){
 
     'use strict';
 
@@ -9,7 +9,7 @@
             dpr = window.devicePixelRatio || 1,
             designWidth = 0;
 
-        dpr = dpr >= 3 ? 3 : ( dpr >=2 ? 2 : 1 );
+        dpr = dpr >= 3 ? 3 : (dpr >=2 ? 2 : 1);
 
         document.documentElement.setAttribute('data-dpr', dpr);
         flexible.dpr = dpr;
@@ -31,10 +31,10 @@
         //核心方法
         var innerWidth = document.documentElement.getBoundingClientRect().width || window.innerWidth;
 
-        if( !innerWidth ){ return false;}
+        if(!innerWidth){return false;}
 
         // 对于iphone6，1rem = 100px
-        document.documentElement.style.fontSize = ( innerWidth / 750 * 100 ) + 'px';
+        document.documentElement.style.fontSize = (innerWidth / 750 * 100) + 'px';
     };
 
     // 直接调用
@@ -52,8 +52,8 @@
     // 异步调用，防止兼容性问题
     setTimeout(function(){
         flexible.mresize(); 
-    },333)
+    }, 333);
 
     window.flexible = flexible; 
 
-})( window , document );
+})(window, document);

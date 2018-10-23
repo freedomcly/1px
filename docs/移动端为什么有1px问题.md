@@ -56,5 +56,5 @@ retina设备上引入这段代码后，1个CSS pixel不是占据一个1个device
 
 ## 参考资料
 
-[https://quirksmode.org/mobile/viewports.html](https://quirksmode.org/mobile/viewports.html)
-[https://quirksmode.org/mobile/viewports2.html](https://quirksmode.org/mobile/viewports2.html)
+* [https://quirksmode.org/mobile/viewports.html](https://quirksmode.org/mobile/viewports.html)
+* [https://quirksmode.org/mobile/viewports2.html](https://quirksmode.org/mobile/viewports2.html)

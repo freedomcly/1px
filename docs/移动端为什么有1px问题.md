@@ -31,8 +31,8 @@ CSS pixel和device pixel的比例是100%：
 
 由于存在两种pixel单位，屏幕宽度是多少呢？
 
-* screen.width，即用device pixel作为单位
-* document.documentElement.clientWidth（或window.innerWidth)，即用CSS pixel作为单位
+* `screen.width`，用device pixel作为单位
+* `document.documentElement.clientWidth`（或`window.innerWidth`)，用CSS pixel作为单位
 
 ## 禁止缩放
 

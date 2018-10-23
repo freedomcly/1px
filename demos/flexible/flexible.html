@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+
+        .hairline {
+            margin: 10px 0;
+            width: 100%;
+            height: 100px;
+            border-bottom: 1px solid #999;
+        }
+
+        .info {
+            font-size: 30px;
+            color: forestgreen;
+            position: fixed;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            width: 100%;
+            height: 160px;
+        }
+    </style>
+
+    <script type="text/javascript" src="./flexible.js"></script>
+</head>
+<body>
+<div class="hairline"></div>
+<div class="info"></div>
+
+<script>
+    function getValues () {
+        let visualViewportWidth = screen.width
+        let layoutViewportWidth = document.documentElement.clientWidth
+        let devicePixelRadio = window.devicePixelRatio
+
+        return {
+            visualViewportWidth,
+            layoutViewportWidth,
+            devicePixelRadio
+        }
+    }
+
+    function generateInfos () {
+        let values = getValues()
+        let infoHTML = `visualViewportWidth: ${values.visualViewportWidth}<br/>
+            layoutViewportWidth: ${values.layoutViewportWidth}<br/>
+            devicePixelRadio: ${values.devicePixelRadio}`
+        document.body.getElementsByClassName('info')[0].innerHTML = infoHTML
+    }
+
+    generateInfos()
+    window.addEventListener('resize', generateInfos, false)
+
+</script>
+
+</body>
+</html>

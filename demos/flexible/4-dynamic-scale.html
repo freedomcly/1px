@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
+    <style>
+        .hairline {
+            border-bottom: 1px solid black;
+        }
+        .block {
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+        }
+    </style>
+    <script>
+    var dpr = window.devicePixelRatio || 1
+    var scale = 1 / dpr
+    var content = 'width=device-width, initial-scale=' + scale + ', minimum-scale=' + scale + ', maximum-scale=' + scale + ', user-scalable=no'
+    var viewportEl = document.querySelector('meta[name="viewport"]')
+
+    if (viewportEl) {
+      viewportEl.setAttribute('content', content)
+    } else {
+      viewportEl = document.createElement('meta')
+      viewportEl.setAttribute('name', 'viewport')
+      viewportEl.setAttribute('content', content)
+      document.head.appendChild(viewportEl)
+    }
+    </script>
+</head>
+<body>
+<!-- hairline 生效，px 单位在不同手机上大小不一 -->
+<div class="hairline"></div>
+<div class="block"></div>
+</body>
+</html>

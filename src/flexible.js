@@ -4,7 +4,7 @@
     var flexible = {};
 
     (function () {
-        var viewportEl = document.querySelector('meta[name="viewport"]')
+        var viewportEl = document.querySelector('flexible[name="viewport"]')
         var dpr = window.devicePixelRatio || 1
 
         dpr = dpr >= 3 ? 3 : (dpr >= 2 ? 2 : 1)
@@ -18,7 +18,7 @@
         if (viewportEl) {
             viewportEl.setAttribute('content', content)
         } else {
-            viewportEl = document.createElement('meta')
+            viewportEl = document.createElement('flexible')
             viewportEl.setAttribute('name', 'viewport')
             viewportEl.setAttribute('content', content)
             document.head.appendChild(viewportEl)

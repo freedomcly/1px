@@ -1,6 +1,6 @@
-# 移动端为什么有 1px 问题
+# Flexible 原理浅析
 
-## 一、为解决缩放问题，固定屏幕宽度
+## 一、为解决缩放问题，固定屏幕宽度（移动端为什么有 1px 问题）
 
 ### 缩放
 
@@ -43,8 +43,6 @@ screen.width // 375
 document.documentElement.clientWidth // 980
 ```
 
-见 [demo: 2-device-width](./demos/flexible/2-device-width.html)。
-
 ### 禁止缩放
 
 缩放让页面失控，为了提升用户体验，移动端通常会在 html 中引入这段代码：
@@ -55,9 +53,9 @@ document.documentElement.clientWidth // 980
 
 `user-scalable=no`表示禁止缩放。
 
-`width=device-width`表示页面宽度设置为设备宽度，也就是把可变的 CSS pixel 设置为与 device pixel 相等，当然也就是把`document.documentElement.clientWidth`设置为与`screen.width`相等。
+`width=device-width`表示页面宽度设置为设备宽度，也就是把可变的 CSS pixel 设置为与 device pixel 相等，当然也就是把`document.documentElement.clientWidth`设置为与`screen.width`相等。见 [demo: 2-device-width](./demos/flexible/2-device-width.html)。
 
-`initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0`表示每个 CSS pixel 放大倍数，如设置为 0.5，则`document.documentElement.clientWidth / screen.width === 2`。
+`initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0`表示每个 CSS pixel 放大倍数，如设置为 1，则`document.documentElement.clientWidth`等于`screen.width`，如设置为 0.5，则`document.documentElement.clientWidth / screen.width === 2`。
 
 scale 的优先级高于 `width=device-width`。
 
@@ -117,7 +115,6 @@ if (viewportEl) {
 
 # 其他解决方案
 
-* flexible
 * gradient，原理是在`background-image`中写一个线性渐变`linear-gradient`，可以得到 0.5 倍的线，但在多倍屏上有局限性)
 * postcss-write-svg
 

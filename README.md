@@ -97,7 +97,7 @@ if (viewportEl) {
 
 为了方便计算，我们希望`1rem = 1px`。设计师的基准屏幕宽度是 750px。那么有以下公式：
 
-屏幕宽度 / 750 = fontSize / 1，即 fontSize = 750 / 屏幕宽度。
+屏幕宽度 / 750 = fontSize / 1，即 fontSize = 屏幕宽度 / 750。
 
 问题又出现了，fontSize 不能小于 12px，否则直接设置为 12px，因此现在`1rem === 12px`。
 
